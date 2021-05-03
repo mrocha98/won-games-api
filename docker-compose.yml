@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres:10-alpine
+    container_name: won-games-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST: ${DATABASE_HOST:-127.0.0.1}
+      POSTGRES_USER: ${DATABASE_USERNAME:-wongames}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-wongames123}
+      POSTGRES_DB: ${DATABASE_NAME:-wongames}
+      LANG: pt_BR.UTF-8
+    ports:
+      - ${DATABASE_PORT:-5432}:5432
+    logging:
+      options:
+        max-size: "5m"
+        max-file: "3"
